@@ -1,10 +1,37 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import React from 'react';
+import getBreeds from '../helpers/getBreeds';
+
+const initialBreeds = [
+    {
+        id: 1,
+        name: 'Boxer',
+    },
+    {
+        id: 2,
+        name: 'Siberian',
+    },
+];
 
 const SelectPet = () => {
+    const [breeds, setBreeds] = useState(initialBreeds);
+
+    useEffect(() => {
+        updateBreeds();
+    }, []);
+
+    const updateBreeds = () => {
+        getBreeds()
+            .then( (newBreeds) => {
+                setBreeds(newBreeds);
+            })
+    }
+
     return (
         <select>
-            <option value="1">boxer</option>
-            <option value="2">Labrador</option>
+            {breeds.map( breed => (
+                <option value={breed.id} key={breed.id}>{breed.name}</option>
+            ))}
         </select>
     )
 }
