@@ -1,14 +1,15 @@
 import React from 'react'
 
-const CardPet = () => {
+const CardPet = ({ dog, loading, updateDog }) => {
+    if (loading) return <h1>Loading...</h1>
     return (
-        <div className="card">
+        <div className="card" onClick={() => updateDog(dog.breed.id)}>
             <img 
-                src="http://images2.fanpop.com/images/photos/6300000/Siberian-Husky-Pups-dogs-6390616-1280-800.jpg"
+                src={dog.image}
                 alt="dog"
             />
             <p>
-                Breed
+                {dog.breed.name}
             </p>
         </div>
     )
