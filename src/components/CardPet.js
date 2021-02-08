@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import Spinner from './Spinner.js';
 
 const CardPet = ({ dog, loading, updateDog }) => {
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <Spinner />
     return (
         <div className="card" onClick={() => updateDog(dog.breed.id)}>
             <img 
