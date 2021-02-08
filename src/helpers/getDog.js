@@ -5,6 +5,12 @@ const getDog = async (breedId) => {
     : `https://api.TheDogAPI.com/v1/images/search?breed_ids=${breedId}`
 
     const res = await fetch(url);
+
+    if(!res.ok) {
+        const { url, status, statusText } = res;
+        throw Error(`Error: ${status} ${statusText} in fetch: ${url}`); //this error is only to developer and the sistem.
+    }
+
     const [data] = await res.json();
 
     let { url: image, breeds: [breed], } = data;
